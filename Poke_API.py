@@ -11,15 +11,7 @@ def get_pokemon_data(pokemon_identifier):
         dict: Pokemon information with keys: name, id, hp, attack, sprite_url, type
         None: if Pokemon not found or error occurred
     """
-    
-    # YOUR CODE HERE
-    # 1. Make a GET request to https://pokeapi.co/api/v2/pokemon/{pokemon_identifier}
-    # 2. Check if the request was successful (status code 200)
-    # 3. Parse the JSON response
-    # 4. Extract: name, id, hp stat, attack stat, front_default sprite, primary type
-    # 5. Return as a dictionary
-    # 6. Handle errors gracefully (return None if something goes wrong)
-    
+
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_identifier}"
 
     response = requests.get(url)
@@ -42,11 +34,6 @@ def get_pokemon_data(pokemon_identifier):
 
 
 
-
-# print(get_pokemon_data("bulbasaur") )#https://pokeapi.co/api/v2/pokemon/bulbasaur
-# print(get_pokemon_data("charmander") )# https://pokeapi.co/api/v2/pokemon/charmander
-# print(get_pokemon_data(100)) #https://pokeapi.co/api/v2/pokemon/100
-# print(get_pokemon_data("lskfdgjoi")) #https://pokeapi.co/api/v2/pokemon/100
 
 
 
