@@ -78,7 +78,29 @@ class PokemonGame:
 #  Go Hunting: 
     def go_hunting(self):
         """Find and encounter a wild Pokémon"""
-        pass
+        print("\nYou go hunting for Pokémon...")
+        pokemon_id = random.randint(1, 151)
+        data = get_pokemon_data(pokemon_id)
+
+        if not data:
+            print("No Pokémon found this time.")
+            return
+
+        # Create Pokémon object
+        self.wild_pokemon = Pokemon(**data)
+
+        print(f"\nA wild {self.wild_pokemon.name} appeared!")
+        self.wild_pokemon.info()
+
+        print("\n1. Try to catch")
+        print("2. Flee")
+        choice = input("What will you do? ").strip()
+
+        if choice == "1":
+            self.try_catch_pokemon()
+        else:
+            print(f"You fled from {self.wild_pokemon.name}.")
+            self.wild_pokemon = None    
 # Catch Pokemon 
     def try_catch_pokemon(self):
         """Attempt to catch the current wild Pokémon"""
