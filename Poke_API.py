@@ -43,16 +43,3 @@ def get_pokemon_data(pokemon_identifier):
 
 
 
-# # Test your function with these Pokemon
-# test_pokemon = ["bulbasaur", "charmander", "squirtle", 25, "pikachu"]
-
-# for pokemon in test_pokemon:
-#     print(f"\n--- Testing {pokemon} ---")
-#     data = get_pokemon_data(pokemon)
-#     if data:
-#         print(f"Found: {data['name']} (ID: {data['id']})")
-#         print(f"   HP: {data['hp']}, Attack: {data['attack']}")
-#         print(f"   Type: {data['type']}")
-#         print(f"   Sprite: {data['sprite_url']}")
-#     else:
-#         print(f"Failed to get data for {pokemon}")
