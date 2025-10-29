@@ -17,8 +17,9 @@ class Pokemon:
   def info(self):
     """Display Pokémon Stats"""
     print(f"=============== {self.name}'s Info ===============")
-    print(f"ID: {self.id}")
-    print(f"Stats: HP - {self.hp} Attack - {self.attack}")
+    print(f"{self.name} (ID: {self.id})")
+    print(f"Stats: HP: {self.hp}")
+    print(f"Attack: {self.attack}")
     print(f"Type: {self.type}")
     print(f"Sprite: {self.sprite_url}")
 
@@ -56,24 +57,35 @@ class Player:
       i += 1
   
   def choose_starter(self):
-    print("Choose your starting Pokémon!")
-    print("1. Bulbasaur")
-    print("2. Charmander")
-    print("3. Squirtle")
+        """Let user pick their starter Pokémon"""
+        print("\nChoose your starting Pokémon!")
+        print("1. Bulbasaur (Grass type)")
+        print("2. Charmander (Fire type)")
+        print("3. Squirtle (Water type)")
 
-    name = input("Enter your Pokémon's name: ")
-    poke_dict = get_pokemon_data(name)
-    if poke_dict:
-      pokemon = Pokemon(**poke_dict)
-      self.add_pokemon(pokemon)
-    else:
-      print("Invalid Pokémon name, please try again")
+        choice = input("Enter 1, 2, or 3: ").strip()
+        starters = {"1": "Bulbasaur", "2": "Charmander", "3": "Squirtle"}
+
+        if choice in starters:
+            name = starters[choice]
+            poke_dict = get_pokemon_data(name)
+            if poke_dict:
+                pokemon = Pokemon(**poke_dict)
+                self.add_pokemon(pokemon)
+                print(f"You chose {pokemon.name}! Great choice!")
+            else:
+                print("Could not fetch starter Pokémon data.")
+        else:
+            print("Invalid choice. Defaulting to Bulbasaur.")
+            poke_dict = get_pokemon_data("bulbasaur")
+            pokemon = Pokemon(**poke_dict)
+            self.add_pokemon(pokemon)
 
 #  Pokémon Game Class:
 
 class PokemonGame:
-    def __init__(self, player_name):
-        self.player = Player(player_name)
+    def __init__(self, player):
+        self.player = player
         self.wild_pokemon = None
 #  Go Hunting: 
     def go_hunting(self):
@@ -139,7 +151,7 @@ class PokemonGame:
         """Loop for user input"""
         while True:
             print(f"\n=== Pokémon Adventure - {self.player.name} ===")
-            print("1. Go hunting")
+            print("1. Go hunting (Find wild Pokémon )")
             print("2. View your collection")
             print("3. Remove Pokémon")
             print("4. Quit game")
@@ -158,3 +170,12 @@ class PokemonGame:
             else:
                 print("Invalid option. Try again!")
 
+#  Call to function 
+
+if __name__ == "__main__":
+    print("Welcome to Pokémon CLI Adventure!")
+    trainer_name = input("What's your name, trainer? ").strip()
+    player = Player(trainer_name)
+    player.choose_starter()
+    game = PokemonGame(player)
+    game.main_menu()
