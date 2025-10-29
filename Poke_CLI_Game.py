@@ -7,7 +7,7 @@ from Poke_API import get_pokemon_data
 class Pokemon:
   '''Represents a simple Pokémon object, instead of just a dictionary'''
   def __init__(self, name, id, hp, attack, sprite_url, type):
-    self.name = name
+    self.name = name.capitalize() 
     self.id = id
     self.hp = hp
     self.attack = attack
