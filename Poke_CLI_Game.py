@@ -104,7 +104,24 @@ class PokemonGame:
 # Catch Pokemon 
     def try_catch_pokemon(self):
         """Attempt to catch the current wild Pokémon"""
-        pass
+        if not self.wild_pokemon:
+            print("No wild Pokémon to catch!")
+            return
+
+        catch_rate = 0.25  # 25% chance
+        chance = random.random()
+
+        print(f"\nYou throw a Pokéball...")
+        print(f"Catch rate: {catch_rate * 100:.0f}%")
+
+        if chance <= catch_rate:
+            print(f"Gotcha! {self.wild_pokemon.name} was caught!")
+            self.player.add_pokemon(self.wild_pokemon)
+            self.wild_pokemon = None
+        else:
+            print(f"Oh no! {self.wild_pokemon.name} broke free!")
+    
+
 # Remove Pokemon
     def remove_pokemon_menu(self):
         """Remove Pokémon from your team"""
